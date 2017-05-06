@@ -1,6 +1,5 @@
 # Created by ripopov
 from __future__ import print_function
-from builtins import object
 import sys
 import gdb
 import gdb_hacks
@@ -10,6 +9,9 @@ class StdVectorIterator(object):
     def __init__(self, begin, end):
         self.cur = begin
         self.end = end
+
+    def next(self):
+        return self.__next__()
 
     def __next__(self):
         if self.cur != self.end:

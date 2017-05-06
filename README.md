@@ -11,7 +11,7 @@ Fixed-point datatypes are not supported yet
 ## Installation
 
 ### Prerequisites
-* GDB 7.x configured with Python 2.7 https://www.gnu.org/software/gdb/download/
+* GDB 7.x configured with Python scripting support https://www.gnu.org/software/gdb/download/
 * libstdc++ pretty printers initialized with .gdbinit https://sourceware.org/gdb/wiki/STLSupport
 * Patched SystemC 2.3.1a built as .so library with debuginfo (see below)
 
@@ -34,5 +34,5 @@ Use GtkWave to view vcd waveform : http://gtkwave.sourceforge.net/
 
 ## Troubleshooting
 
-Double check that you are using Python 2.7 in GDB and STL pretty printers are installed. 
+Double check that STL pretty printers are installed. 
 

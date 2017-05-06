@@ -1,7 +1,6 @@
 # coding=utf-8
 # Created by ripopov
 from __future__ import print_function
-from builtins import object
 import sys
 import gdb
 import gdb.types
