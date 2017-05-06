@@ -14,6 +14,7 @@ Fixed-point datatypes are not supported yet
 * GDB 7.x configured with Python scripting support https://www.gnu.org/software/gdb/download/
 * libstdc++ pretty printers initialized with .gdbinit https://sourceware.org/gdb/wiki/STLSupport
 * Patched SystemC 2.3.1a built as .so library with debuginfo (see below)
+* Python : to run top-level run.py script
 
 ### Patching and Building SystemC 
 1. Download SystemC 2.3.1.a http://accellera.org/downloads/standards/systemc

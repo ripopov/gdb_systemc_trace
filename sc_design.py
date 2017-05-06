@@ -131,7 +131,7 @@ class SCModule(object):
 
     def print_members(self):
         for member in self.members:
-            print (member.name, " : ", member.value.type.name)
+            print (member.name)
 
         for child_mod in self.child_modules:
             child_mod.print_members()
