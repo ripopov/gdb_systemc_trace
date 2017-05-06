@@ -6,9 +6,22 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import gdb
 import sc_design
 
+
+def is_libstdcxx_installed():
+    for pp in gdb.pretty_printers:
+        try:
+            if pp.name.startswith("libstdc++"):
+                return True
+        except AttributeError:
+            pass
+    return False
+
+
 print ("SystemC Full trace")
-# if sys.version_info[0] > 2:
-#     raise RuntimeError("Python 3.x is not supported yet")
+
+if not is_libstdcxx_installed():
+    raise RuntimeError("STL Pretty printers not installed")
+
 
 # Intermediate breakpoint at main required for dynamic linking
 bp_main = gdb.Breakpoint("main")

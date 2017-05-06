@@ -1,7 +1,7 @@
 # gdb_systemc_trace
 GDB Python scripts for SystemC design introspection and tracing
 
-Creates a trace of all signals and member variables in design
+Creates a trace of all signals and module member variables in design
 
 
 ### Limitations
@@ -31,8 +31,4 @@ full_trace.vcd will be created
 Use vcd_hierarchy_manipulator to create hierarchical VCDs :https://github.com/yTakatsukasa/vcd_hierarchy_manipulator
 
 Use GtkWave to view vcd waveform : http://gtkwave.sourceforge.net/
-
-## Troubleshooting
-
-Double check that STL pretty printers are installed. 
 
