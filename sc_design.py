@@ -1,6 +1,7 @@
 # coding=utf-8
 # Created by ripopov
-
+from __future__ import print_function
+from builtins import object
 import sys
 import gdb
 import gdb.types
@@ -40,7 +41,7 @@ def get_plain_data_fields(mtype):
     return res
 
 
-class SCModuleMember:
+class SCModuleMember(object):
     def __init__(self, val, name):
         self.value = val
         self.name = name
@@ -49,7 +50,7 @@ class SCModuleMember:
         return str(self.name).split('.')[-1]
 
 
-class SCModule:
+class SCModule(object):
 
     def __init__(self, gdb_value):
         self.child_modules = []
@@ -111,9 +112,9 @@ class SCModule:
                 icon = " ◘ "
 
             res += "\n" + prefix + member_prefix + icon + member.basename() + "    (" + str(
-                member.value.type.name) + ")     " + str(gdb_hacks.code_str(member.value.type.code))
+                member.value.type.name) + ")     "
 
-        for ii in xrange(0, n_child_mods):
+        for ii in range(0, n_child_mods):
 
             pref0 = "├"
             pref1 = "│"
@@ -122,7 +123,7 @@ class SCModule:
                 pref0 = "└"
                 pref1 = " "
 
-            res += "\n" + prefix + pref0 + "──" + self.child_modules[ii].__to_string(prefix + pref1 + "  ");
+            res += "\n" + prefix + pref0 + "──" + self.child_modules[ii].__to_string(prefix + pref1 + "  ")
 
         return res
 
@@ -131,7 +132,7 @@ class SCModule:
 
     def print_members(self):
         for member in self.members:
-            print member.name, " : ", member.value.type.name
+            print (member.name, " : ", member.value.type.name)
 
         for child_mod in self.child_modules:
             child_mod.print_members()
@@ -144,11 +145,6 @@ class SCModule:
             child_mod.trace_all_tf(tracer)
 
     def trace_all(self, trace_file_name):
-
-        print "Tracing all members"
-
+        print ("Tracing all members")
         tf = sc_trace.SCTrace(trace_file_name)
-
         self.trace_all_tf(tf)
-
-        pass

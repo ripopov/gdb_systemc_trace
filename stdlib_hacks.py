@@ -1,15 +1,17 @@
 # Created by ripopov
+from __future__ import print_function
+from builtins import object
 import sys
 import gdb
 import gdb_hacks
 
 
-class StdVectorIterator:
+class StdVectorIterator(object):
     def __init__(self, begin, end):
         self.cur = begin
         self.end = end
 
-    def next(self):
+    def __next__(self):
         if self.cur != self.end:
             val = self.cur.dereference()
             self.cur += 1
@@ -18,7 +20,7 @@ class StdVectorIterator:
             raise StopIteration()
 
 
-class StdVectorView:
+class StdVectorView(object):
     def __init__(self, val):
         assert val.dynamic_type.name.startswith('std::vector<')
 
@@ -31,10 +33,10 @@ class StdVectorView:
         return StdVectorIterator(self.begin, self.end)
 
     def prnt(self):
-        print "size ", self.size
+        print ("size ", self.size)
 
         for i in range(0, self.size - 1):
-            print (self.begin + i).dereference().dereference().dynamic_type.name
+            print ((self.begin + i).dereference().dereference().dynamic_type.name)
 
     def __str__(self):
         res = 'vector ' + self.val.dynamic_type.name + '\n'

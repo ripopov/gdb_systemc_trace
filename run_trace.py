@@ -1,11 +1,14 @@
 # Created by ripopov
+from __future__ import print_function
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import gdb
 import sc_design
 
-print "SystemC Full trace demo"
+print ("SystemC Full trace")
+# if sys.version_info[0] > 2:
+#     raise RuntimeError("Python 3.x is not supported yet")
 
 # Intermediate breakpoint at main required for dynamic linking
 bp_main = gdb.Breakpoint("main")
@@ -23,5 +26,4 @@ design = sc_design.SCModule(simctx)
 design.trace_all("full_trace");
 
 gdb.execute("continue")
-print "SystemC tracing demo finished"
 sys.exit(0)

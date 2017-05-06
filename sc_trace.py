@@ -1,4 +1,5 @@
 # Created by ripopov
+from __future__ import print_function
 import gdb
 import stdlib_hacks
 import gdb_hacks
@@ -28,7 +29,7 @@ def get_data_member_list(gdb_value):
     __get_data_fields_rec(gdb_value.type.strip_typedefs(), fields)
 
     for field in fields:
-        members.append( (gdb_value[field.name], field.name))
+        members.append((gdb_value[field.name], field.name))
 
     return members
 
@@ -37,7 +38,8 @@ class SCTrace:
 
     def __init__(self, trace_file_name):
         self.sc_create_vcd_trace_file = lookup_global_function('sc_core::sc_create_vcd_trace_file(char const*)')
-        self.sc_close_vcd_trace_file = lookup_global_function('sc_core::sc_close_vcd_trace_file(sc_core::sc_trace_file*)')
+        self.sc_close_vcd_trace_file = \
+            lookup_global_function('sc_core::sc_close_vcd_trace_file(sc_core::sc_trace_file*)')
 
         self.sc_trace_char_ptr = lookup_global_function(
             'sc_core::sc_trace(sc_core::sc_trace_file*, char const*, std::string const&, int)')
@@ -194,13 +196,13 @@ class SCTrace:
 
             elif real_type.name.startswith("sc_core::sc_in<") or real_type.name.startswith("sc_core::sc_out<"):
                 m_interface = gdb_value['m_interface']
-                m_interface = m_interface.reinterpret_cast(m_interface.dynamic_type);
+                m_interface = m_interface.reinterpret_cast(m_interface.dynamic_type)
                 sig_val = m_interface.dereference()
                 self.trace(sig_val, name)
 
             elif real_type.name.startswith("sc_core::sc_in<") or real_type.name.startswith("sc_core::sc_out<"):
                 m_interface = gdb_value['m_interface']
-                m_interface = m_interface.reinterpret_cast(m_interface.dynamic_type);
+                m_interface = m_interface.reinterpret_cast(m_interface.dynamic_type)
                 sig_val = m_interface.dereference()
                 self.trace(sig_val, name)
 
@@ -210,6 +212,4 @@ class SCTrace:
                     self.trace(member[0], name + "*" + member[1])
 
             else:
-                print "Type not supported yet: " + real_type.name
-
-
+                print ("Type not supported yet: " + real_type.name)
