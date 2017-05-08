@@ -40,3 +40,6 @@ Fixed-point datatypes are not supported yet
 
 ## Print design tree
 * ./run.py -p path/to/your/simulation_executable
+
+## Passing arguments to simulation executable
+* ./run.py  path/to/your/simulation_executable argument_1 argument_2 ...
