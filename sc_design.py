@@ -144,6 +144,23 @@ class SCModule(object):
             child_mod.trace_all_tf(tracer)
 
     def trace_all(self, trace_file_name):
-        print ("Tracing all members")
+        print ("tracing all members: ", trace_file_name)
         tf = sc_trace.SCTrace(trace_file_name)
         self.trace_all_tf(tf)
+
+    def trace_signal_tf(self, tracer, signal_path):
+        if len(signal_path) > 1:
+            child_mod = [mod for mod in self.child_modules if mod.basename() == signal_path[0]]
+            assert len(child_mod) == 1
+            child_mod[0].trace_signal_tf(tracer, signal_path[1:])
+        else:
+            selected_members = [member for member in self.members if member.basename() == signal_path[0]]
+            if len(selected_members) == 1:
+                tracer.trace(selected_members[0].value, selected_members[0].name)
+
+    def trace_signals(self, trace_file_name, signal_list):
+        print ("tracing selected signals: ", trace_file_name)
+        tf = sc_trace.SCTrace(trace_file_name)
+        for signal_name in signal_list:
+            signal_path = signal_name.strip().split('.')
+            self.trace_signal_tf(tf, signal_path)

@@ -5,7 +5,7 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import gdb
 import sc_design
-import gdb_hacks
+
 
 def is_libstdcxx_installed():
     for pp in gdb.pretty_printers:
@@ -46,7 +46,7 @@ gdb.execute('run')
 bp_main.enabled = False
 
 # TODO: Find a better breakpoint for end of elaboration
-bp_start = gdb.Breakpoint('*sc_core::sc_start')
+bp_start = gdb.Breakpoint('*sc_core::sc_simcontext::prepare_to_simulate')
 
 gdb.execute("continue")
 bp_start.enabled = False
@@ -59,10 +59,15 @@ if print_hier:
     print (design)
 
 if list_signals:
+    print("\nList of all detected signals:\n")
     design.print_members()
 
 if run_simulation:
-    design.trace_all("full_trace")
+    if signals_file:
+        signals = open(signals_file).read().splitlines()
+        design.trace_signals("systemc_trace", signals)
+    else:
+        design.trace_all("systemc_trace")
+    gdb.execute("continue")
 
-gdb.execute("continue")
 sys.exit(0)

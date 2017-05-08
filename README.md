@@ -25,11 +25,15 @@ Fixed-point datatypes are not supported yet
 
 ## Running simulation with full trace dump
 
-sh run.sh path/to/your/simulation_executable
+* ./run.py path/to/your/simulation_executable
+* systemc_trace.vcd will be created
+* Use vcd_hierarchy_manipulator to create hierarchical VCDs :https://github.com/yTakatsukasa/vcd_hierarchy_manipulator
+* Use GtkWave to view vcd waveform : http://gtkwave.sourceforge.net/
 
-full_trace.vcd will be created
+## Tracing only required signals
 
-Use vcd_hierarchy_manipulator to create hierarchical VCDs :https://github.com/yTakatsukasa/vcd_hierarchy_manipulator
-
-Use GtkWave to view vcd waveform : http://gtkwave.sourceforge.net/
-
+* ./run.py -l path/to/your/simulation_executable
+* List of all detected signal in design will be printed to console
+* Copy required signal names (full hierarchical names) into file, say signals.txt
+* ./run.py -f signals.txt
+* systemc_trace.vcd will be created

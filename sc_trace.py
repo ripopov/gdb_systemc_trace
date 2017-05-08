@@ -5,7 +5,6 @@ import stdlib_hacks
 import gdb_hacks
 
 
-
 class SCTrace:
 
     def __init__(self, trace_file_name):
