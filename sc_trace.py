@@ -66,7 +66,7 @@ class SCTrace:
 
         size_bit = 8 * real_type.sizeof
 
-        if real_type.name:
+        if real_type.name and gdb_value.address:
             if real_type.name == "char":
                 name_str = stdlib_hacks.create_std_string(name)
                 self.sc_trace_char_ptr(self.tf, gdb_value.address, name_str, size_bit)

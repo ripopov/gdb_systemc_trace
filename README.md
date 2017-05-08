@@ -37,3 +37,6 @@ Fixed-point datatypes are not supported yet
 * Copy required signal names (full hierarchical names) into file, say signals.txt
 * ./run.py -f signals.txt
 * systemc_trace.vcd will be created
+
+## Print design tree
+* ./run.py -p path/to/your/simulation_executable
