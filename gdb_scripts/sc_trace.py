@@ -8,58 +8,58 @@ import stdlib_hacks
 
 
 class SCTrace:
-
     def __init__(self, trace_file_name):
-        self.sc_create_vcd_trace_file = gdb_hacks.lookup_global_function('sc_core::sc_create_vcd_trace_file(char const*)')
+        self.sc_create_vcd_trace_file = gdb_hacks.lookup_global_function(
+            'sc_core::sc_create_vcd_trace_file(char const*)')
         self.sc_close_vcd_trace_file = \
             gdb_hacks.lookup_global_function('sc_core::sc_close_vcd_trace_file(sc_core::sc_trace_file*)')
 
         self.sc_trace_char_ptr = gdb_hacks.lookup_global_function(
-            'sc_core::sc_trace(sc_core::sc_trace_file*, char const*, std::string const&, int)')
+            'sc_core::sc_trace(sc_core::sc_trace_file*, char const*, ' + stdlib_hacks.std_string_name + ' const&, int)')
         self.sc_trace_short_ptr = gdb_hacks.lookup_global_function(
-            'sc_core::sc_trace(sc_core::sc_trace_file*, short const*, std::string const&, int)')
+            'sc_core::sc_trace(sc_core::sc_trace_file*, short const*, ' + stdlib_hacks.std_string_name + ' const&, int)')
         self.sc_trace_int_ptr = gdb_hacks.lookup_global_function(
-            'sc_core::sc_trace(sc_core::sc_trace_file*, int const*, std::string const&, int)')
+            'sc_core::sc_trace(sc_core::sc_trace_file*, int const*, ' + stdlib_hacks.std_string_name + ' const&, int)')
         self.sc_trace_long_ptr = gdb_hacks.lookup_global_function(
-            'sc_core::sc_trace(sc_core::sc_trace_file*, long const*, std::string const&, int)')
+            'sc_core::sc_trace(sc_core::sc_trace_file*, long const*, ' + stdlib_hacks.std_string_name + ' const&, int)')
         self.sc_trace_long_long_ptr = gdb_hacks.lookup_global_function(
-            'sc_core::sc_trace(sc_core::sc_trace_file*, long long const*, std::string const&, int)')
+            'sc_core::sc_trace(sc_core::sc_trace_file*, long long const*, ' + stdlib_hacks.std_string_name + ' const&, int)')
 
         self.sc_trace_unsigned_char_ptr = gdb_hacks.lookup_global_function(
-            'sc_core::sc_trace(sc_core::sc_trace_file*, unsigned char const*, std::string const&, int)')
+            'sc_core::sc_trace(sc_core::sc_trace_file*, unsigned char const*, ' + stdlib_hacks.std_string_name + ' const&, int)')
         self.sc_trace_unsigned_short_ptr = gdb_hacks.lookup_global_function(
-            'sc_core::sc_trace(sc_core::sc_trace_file*, unsigned short const*, std::string const&, int)')
+            'sc_core::sc_trace(sc_core::sc_trace_file*, unsigned short const*, ' + stdlib_hacks.std_string_name + ' const&, int)')
         self.sc_trace_unsigned_int_ptr = gdb_hacks.lookup_global_function(
-            'sc_core::sc_trace(sc_core::sc_trace_file*, unsigned int const*, std::string const&, int)')
+            'sc_core::sc_trace(sc_core::sc_trace_file*, unsigned int const*, ' + stdlib_hacks.std_string_name + ' const&, int)')
         self.sc_trace_unsigned_long_ptr = gdb_hacks.lookup_global_function(
-            'sc_core::sc_trace(sc_core::sc_trace_file*, unsigned long const*, std::string const&, int)')
+            'sc_core::sc_trace(sc_core::sc_trace_file*, unsigned long const*, ' + stdlib_hacks.std_string_name + ' const&, int)')
         self.sc_trace_unsigned_long_long_ptr = gdb_hacks.lookup_global_function(
-            'sc_core::sc_trace(sc_core::sc_trace_file*, unsigned long long const*, std::string const&, int)')
+            'sc_core::sc_trace(sc_core::sc_trace_file*, unsigned long long const*, ' + stdlib_hacks.std_string_name + ' const&, int)')
 
         self.sc_trace_bool_ptr = gdb_hacks.lookup_global_function(
-            'sc_core::sc_trace(sc_core::sc_trace_file*, bool const*, std::string const&)')
+            'sc_core::sc_trace(sc_core::sc_trace_file*, bool const*, ' + stdlib_hacks.std_string_name + ' const&)')
         self.sc_trace_float_ptr = gdb_hacks.lookup_global_function(
-            'sc_core::sc_trace(sc_core::sc_trace_file*, float const*, std::string const&)')
+            'sc_core::sc_trace(sc_core::sc_trace_file*, float const*, ' + stdlib_hacks.std_string_name + ' const&)')
         self.sc_trace_double_ptr = gdb_hacks.lookup_global_function(
-            'sc_core::sc_trace(sc_core::sc_trace_file*, double const*, std::string const&)')
+            'sc_core::sc_trace(sc_core::sc_trace_file*, double const*, ' + stdlib_hacks.std_string_name + ' const&)')
 
         self.sc_trace_sc_bit_ptr = gdb_hacks.lookup_global_function(
-            'sc_core::sc_trace(sc_core::sc_trace_file*, sc_dt::sc_bit const*, std::string const&)')
+            'sc_core::sc_trace(sc_core::sc_trace_file*, sc_dt::sc_bit const*, ' + stdlib_hacks.std_string_name + ' const&)')
         self.sc_trace_sc_logic_ptr = gdb_hacks.lookup_global_function(
-            'sc_core::sc_trace(sc_core::sc_trace_file*, sc_dt::sc_logic const*, std::string const&)')
+            'sc_core::sc_trace(sc_core::sc_trace_file*, sc_dt::sc_logic const*, ' + stdlib_hacks.std_string_name + ' const&)')
         self.sc_trace_sc_int_base_ptr = gdb_hacks.lookup_global_function(
-            'sc_core::sc_trace(sc_core::sc_trace_file*, sc_dt::sc_int_base const*, std::string const&)')
+            'sc_core::sc_trace(sc_core::sc_trace_file*, sc_dt::sc_int_base const*, ' + stdlib_hacks.std_string_name + ' const&)')
         self.sc_trace_sc_uint_base_ptr = gdb_hacks.lookup_global_function(
-            'sc_core::sc_trace(sc_core::sc_trace_file*, sc_dt::sc_uint_base const*, std::string const&)')
+            'sc_core::sc_trace(sc_core::sc_trace_file*, sc_dt::sc_uint_base const*, ' + stdlib_hacks.std_string_name + ' const&)')
         self.sc_trace_sc_signed_ptr = gdb_hacks.lookup_global_function(
-            'sc_core::sc_trace(sc_core::sc_trace_file*, sc_dt::sc_signed const*, std::string const&)')
+            'sc_core::sc_trace(sc_core::sc_trace_file*, sc_dt::sc_signed const*, ' + stdlib_hacks.std_string_name + ' const&)')
         self.sc_trace_sc_unsigned_ptr = gdb_hacks.lookup_global_function(
-            'sc_core::sc_trace(sc_core::sc_trace_file*, sc_dt::sc_unsigned const*, std::string const&)')
+            'sc_core::sc_trace(sc_core::sc_trace_file*, sc_dt::sc_unsigned const*, ' + stdlib_hacks.std_string_name + ' const&)')
 
         self.sc_trace_sc_bv_base_ptr = gdb_hacks.lookup_global_function(
-            'sc_core::sc_trace(sc_core::sc_trace_file*, sc_dt::sc_bv_base const*, std::string const&)')
+            'sc_core::sc_trace(sc_core::sc_trace_file*, sc_dt::sc_bv_base const*, ' + stdlib_hacks.std_string_name + ' const&)')
         self.sc_trace_sc_lv_base_ptr = gdb_hacks.lookup_global_function(
-            'sc_core::sc_trace(sc_core::sc_trace_file*, sc_dt::sc_lv_base const*, std::string const&)')
+            'sc_core::sc_trace(sc_core::sc_trace_file*, sc_dt::sc_lv_base const*, ' + stdlib_hacks.std_string_name + ' const&)')
 
         self.tf = self.sc_create_vcd_trace_file(trace_file_name)
 

@@ -6,7 +6,6 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import gdb
-import sc_design
 
 
 def is_libstdcxx_installed():
@@ -47,13 +46,14 @@ bp_main = gdb.Breakpoint("main")
 gdb.execute('run')
 bp_main.enabled = False
 
-# TODO: Find a better breakpoint for end of elaboration
 bp_start = gdb.Breakpoint('*sc_core::sc_simcontext::prepare_to_simulate')
 
 gdb.execute("continue")
 bp_start.enabled = False
 
 simctx = gdb.lookup_symbol("sc_core::sc_curr_simcontext")[0].value().dereference()
+
+import sc_design
 
 design = sc_design.SCModule(simctx)
 
