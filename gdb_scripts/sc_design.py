@@ -1,12 +1,10 @@
 # coding=utf-8
 # Created by ripopov
 from __future__ import print_function
-import sys
-import gdb
-import gdb.types
-import stdlib_hacks
+
 import gdb_hacks
 import sc_trace
+import stdlib_hacks
 
 
 def is_sc_object(val_type):

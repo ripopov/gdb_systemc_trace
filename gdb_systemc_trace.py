@@ -13,7 +13,7 @@ parser.add_argument("sim_exe", help="SystemC simulation executable", type=str)
 
 args, unknownargs = parser.parse_known_args()
 
-trace_script = (os.path.dirname(os.path.abspath(__file__)))+"/run_trace.py"
+trace_script = (os.path.dirname(os.path.abspath(__file__)))+"/gdb_scripts/run_trace.py"
 
 argdict = {'list_signals': args.list_signals, 'print_hier': args.print_hier, 'signals_file': args.signals_file}
 argstring = "py argdict = " + str(argdict) + ""

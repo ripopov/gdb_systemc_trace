@@ -1,7 +1,8 @@
 # Created by ripopov
 from __future__ import print_function
-import sys
+
 import gdb
+
 import gdb_hacks
 
 

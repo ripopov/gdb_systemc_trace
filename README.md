@@ -14,7 +14,7 @@ Fixed-point datatypes are not supported yet
 * GDB 7.x configured with Python scripting support https://www.gnu.org/software/gdb/download/
 * libstdc++ pretty printers initialized with .gdbinit https://sourceware.org/gdb/wiki/STLSupport
 * Patched SystemC 2.3.1a built as .so library with debuginfo (see below)
-* Python : to run top-level run.py script
+* Python : to run top-level gdb_systemc_trace.py script
 
 ### Patching and Building SystemC 
 1. Download SystemC 2.3.1.a http://accellera.org/downloads/standards/systemc
@@ -25,21 +25,21 @@ Fixed-point datatypes are not supported yet
 
 ## Running simulation with full trace dump
 
-* ./run.py path/to/your/simulation_executable
+* ./gdb_systemc_trace.py path/to/your/simulation_executable
 * systemc_trace.vcd will be created
 * Use vcd_hierarchy_manipulator to create hierarchical VCDs: https://github.com/yTakatsukasa/vcd_hierarchy_manipulator
 * Use GtkWave to view vcd waveform : http://gtkwave.sourceforge.net/
 
 ## Tracing only required signals
 
-* ./run.py -l path/to/your/simulation_executable
+* ./gdb_systemc_trace.py -l path/to/your/simulation_executable
 * List of all detected signals in design will be printed to console
 * Copy required signal names (full hierarchical names) into some file, say signals.txt
-* ./run.py -f signals.txt
+* ./gdb_systemc_trace.py -f signals.txt
 * systemc_trace.vcd will be created
 
 ## Print design tree
-* ./run.py -p path/to/your/simulation_executable
+* ./gdb_systemc_trace.py -p path/to/your/simulation_executable
 
 ## Passing arguments to simulation executable
-* ./run.py  path/to/your/simulation_executable argument_1 argument_2 ...
+* ./gdb_systemc_trace.py  path/to/your/simulation_executable argument_1 argument_2 ...

@@ -1,8 +1,10 @@
 # Created by ripopov
 from __future__ import print_function
+
 import gdb
-import stdlib_hacks
+
 import gdb_hacks
+import stdlib_hacks
 
 
 class SCTrace:
