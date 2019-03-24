@@ -11,17 +11,36 @@ Fixed-point datatypes are not supported yet
 ## Installation
 
 ### Prerequisites
-* GDB 7.x configured with Python scripting support https://www.gnu.org/software/gdb/download/
+* GDB 8.2 configured with Python scripting support https://www.gnu.org/software/gdb/download/
 * libstdc++ pretty printers initialized with .gdbinit https://sourceware.org/gdb/wiki/STLSupport
-* Patched SystemC 2.3.1a built as .so library with debuginfo (see below)
 * Python : to run top-level gdb_systemc_trace.py script
+* SystemC 2.3.3 built as .so library with debuginfo (see below)
 
-### Patching and Building SystemC 
-1. Download SystemC 2.3.1.a http://accellera.org/downloads/standards/systemc
-2. Replace sc_trace.cpp and sc_trace.h with files from systemc2.3.1.a_patch 
-3. Configure build as shared library with debug information:
-    (../configure --enable-debug --enable-shared)
-4. Build your design with debug info (-g)
+### Running basic example
+1. clone gdb_systemc_trace from git and add to $PATH
+2. Download SystemC 2.3.3 https://accellera.org/downloads/standards/systemc
+3. Build with debug info:
+    ```
+    $ tar xvf systemc-2.3.3.tar.gz 
+    $ cd systemc-2.3.3/
+    $ mkdir build_debug
+    $ cd build_debug/
+    $ cmake ../ -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_STANDARD=14
+    $ make -j8
+    # build SystemC examples
+    $ make check -j8
+    # it is important to cd into example directory, sometimes they read some files from workdir
+    $ cd examples/sysc/risc_cpu
+    $ gdb_systemc_trace.py risc_cpu
+    # systemc_trace.vcd file will be created
+    ```
+4. Use GTKWave or other VCD viewer to view generated vcd:
+```
+ $ gtkwave systemc_trace.vcd 
+```
+
+![risc_cpu](gtkwave.png)
+
 
 ## Running simulation with full trace dump
 
